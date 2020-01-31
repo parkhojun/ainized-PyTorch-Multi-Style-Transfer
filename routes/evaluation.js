@@ -52,7 +52,7 @@ function move_file_to_right_location(filename, option) {
 
 
 // WEB_UI EDITION = RUNNING ONLY (UPLOAD AND REDIRECTION REQUIRED!)
-outer.post('/21styles', upload.array('files', 1), (req, res, next) => {
+router.post('/21styles', upload.array('files', 1), (req, res, next) => {
     const { files } = req;
     const { option } = req.query;
     const filename = files[0].filename;
