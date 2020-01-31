@@ -80,7 +80,7 @@ router.post('/21styles', upload.array('files', 1), (req, res, next) => {
         console.log({filename, option});
         move_file_to_right_location(filename, option)
         .then(() => {
-            exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 512 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
+            exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 256 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
                 if (!error) {
                     // FIXME: SHOW SUCCESS FILE TO res!
                     const filename_without_ext = filename.split('.')[0];
