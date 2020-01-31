@@ -1,4 +1,4 @@
-let model;
+let model = "21styles";
 let option = "";
 
 
@@ -91,7 +91,7 @@ window.onload = () => {
     function fetchEval(filename, model, option) {
         const xhr = new XMLHttpRequest();
         xhr.timeout = 1000 * 30000;
-        xhr.open("GET", encodeURI(`/eval/` + model + '?option=' + option), true);
+        xhr.open("GET", encodeURI(`/eval/` + model + '?option=' + option + '&filename=' + filename), true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = () => {
             stop_timer();

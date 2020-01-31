@@ -39,20 +39,7 @@ router.post('/', upload.array('files', 100), (req, res) => {
 function move_file_to_right_location(filename, option) {
     
     var final_location = "experiments/images/content/";
-/*
-    if(option === 'maps'){
-        final_location = "datasets/"+ option +"/test/";
-    }
-    else if(option === 'facades'){
-        final_location = "datasets/"+ option +"/test/";
-    }
-    else if(option === 'night2day'){
-        final_location = "datasets/"+ option +"/test/";
-    }
-    else{
-        final_location = "datasets/"+ option +"/testA/";
-    }
-*/ 
+
     console.log(final_location);
     const final_command = "mv ./uploaded/" + filename + " " + final_location;
     console.log(final_command);

@@ -1,0 +1,89 @@
+openapi: 3.0.1
+info:
+  title: Ainized-pytorch-CycleGAN-and-pix2pix
+  description: "**This repository providers a server that advances unpaired and paired image-to-image translation based on a GAN model.
+The model used in the server is from junyanz/pytorch-CycleGAN-and-pix2pix/git which is paper from Image-to-Image Translation with Conditional Adversarial Networks.**"
+  contact:
+    name: Ainizer - Parkhojun
+    email: mara8534@gmail.com
+  version: 1.0.0
+  license:
+    name: Original author - junyanz
+    url: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+externalDocs:
+  description: "PapersWithCode: Image to Image translation with Conditional."
+  url: 'https://paperswithcode.com/paper/image-to-image-translation-with-conditional'
+
+  
+servers:
+  - url: 'https://516360d3.ngrok.io'
+  - url: 'http://34.85.42.255:80'
+  - url: 'https://ainize.ai/project/parkhojun/ainized-pytorch-cyclegan-and-pix2pix'
+
+tags:
+- name: 21Styles
+  description: Use 21Styles model to Image-to-Image Translation
+
+
+
+paths:
+  /eval/21Styles:
+    post: 
+      tags:
+      - 21Styles
+      summary: Perform 21Styles to the photos uploaded to the selected model.
+      parameters: 
+      - name: option
+        in: query
+        description: "**Select the ImageTranslationModel**"
+        required: true
+        allowEmptyValue: false
+        explode: false
+        schema:
+          type: string
+          enum:
+          - Robert_Delaunay,_1906,_Portrait
+          - feathers
+          - mosaic_ducks_massimo
+          - seated-nude
+          - strip
+          - woman-with-hat-matisse
+          - candy
+          - frida_kahlo
+          - pencil
+          - shipwreck
+          - the_scream
+          - composition_vii
+          - la_muse
+          - picasso_selfport1907
+          - starry_night
+          - udnie
+          - escher_sphere
+          - mosaic
+          - rain_princess
+          - stars2
+          - wave
+      requestBody:
+        description: "**REQUIREMENT - ENGLISH FILENAME PLEASE**"
+        content:
+          multipart/form-data:
+            schema:
+              type: object
+              properties:
+                files:  # TODO: files -> file (CODE CHANGE NECESSARY!)
+                  type: string
+                  format: binary
+      responses:
+        '200':
+          description: Succesfully Translated Image.
+          content:
+            images/*:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: Bad request (File Not Uploaded)
+        '500':
+          description: Server Side Error (Model Test Error, File Move Error)
+        
+      

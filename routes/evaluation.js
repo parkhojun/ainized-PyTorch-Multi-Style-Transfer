@@ -52,17 +52,17 @@ function move_file_to_right_location(filename, option) {
 
 
 // WEB_UI EDITION = RUNNING ONLY (UPLOAD AND REDIRECTION REQUIRED!)
-router.post('/21styles', upload.array('files', 1), (req, res, next) => {
-    const { files } = req;
-    const { option } = req.query;
-    const filename = files[0].filename;
+router.get('/21styles', (req, res, next) => {
+    const { option, filename } = req.query;
     console.log({filename, option});
 
-    exec("python main.py eval --content-image images/content/" + filename + ".jpg --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 512 --cuda 0", (error, stdout, stderr) => {
+    exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 512 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
         if (!error) {
             res.json({ "msg": stdout });
+            console.log(1111);
         } else {
             res.json({ "msg": stderr });
+            console.log(filename, option);
         }
     });
 });
@@ -80,11 +80,11 @@ router.post('/21styles', upload.array('files', 1), (req, res, next) => {
         console.log({filename, option});
         move_file_to_right_location(filename, option)
         .then(() => {
-            exec("python main.py eval --content-image images/content/" + filename + ".jpg --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 512 --cuda 0", (error, stdout, stderr) => {
+            exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 512 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
                 if (!error) {
                     // FIXME: SHOW SUCCESS FILE TO res!
                     const filename_without_ext = filename.split('.')[0];
-                    const real_file_location = `experiments/output.jpg`;
+                    const real_file_location = `output.jpg`;
                     res.download(real_file_location);
                 } else {
                     res.status(500);
