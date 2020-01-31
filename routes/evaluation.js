@@ -84,7 +84,7 @@ router.post('/21styles', upload.array('files', 1), (req, res, next) => {
                 if (!error) {
                     // FIXME: SHOW SUCCESS FILE TO res!
                     const filename_without_ext = filename.split('.')[0];
-                    const real_file_location = `output.jpg`;
+                    const real_file_location = `experiments/output.jpg`;
                     res.download(real_file_location);
                 } else {
                     res.status(500);
