@@ -1,6 +1,6 @@
 openapi: 3.0.1
 info:
-  title: Ainized-pytorch-CycleGAN-and-pix2pix
+  title: Ainized-PyTorch-Multi-Style-Transfer
   description: "**This repository providers a server that advances unpaired and paired image-to-image translation based on a GAN model.
 The model used in the server is from junyanz/pytorch-CycleGAN-and-pix2pix/git which is paper from Image-to-Image Translation with Conditional Adversarial Networks.**"
   contact:
@@ -8,17 +8,17 @@ The model used in the server is from junyanz/pytorch-CycleGAN-and-pix2pix/git wh
     email: mara8534@gmail.com
   version: 1.0.0
   license:
-    name: Original author - junyanz
-    url: https://github.com/junyanz/pytorch-CycleGAN-and-pix2pix
+    name: Original author - zhanghang1989
+    url: https://github.com/zhanghang1989/PyTorch-Multi-Style-Transfer
 externalDocs:
-  description: "PapersWithCode: Image to Image translation with Conditional."
-  url: 'https://paperswithcode.com/paper/image-to-image-translation-with-conditional'
+  description: "PapersWithCode:Multi-style Generative Network for Real-time Transfer."
+  url: 'https://paperswithcode.com/paper/multi-style-generative-network-for-real-time'
 
   
 servers:
   - url: 'https://516360d3.ngrok.io'
   - url: 'http://34.85.42.255:80'
-  - url: 'https://ainize.ai/project/parkhojun/ainized-pytorch-cyclegan-and-pix2pix'
+  - url: 'https://ainize.ai/project/parkhojun/ainized-pytorch-multi-style-transfer'
 
 tags:
 - name: 21Styles
@@ -27,10 +27,10 @@ tags:
 
 
 paths:
-  /eval/21Styles:
+  /eval/21styles:
     post: 
       tags:
-      - 21Styles
+      - 21styles
       summary: Perform 21Styles to the photos uploaded to the selected model.
       parameters: 
       - name: option

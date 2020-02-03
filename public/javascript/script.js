@@ -90,7 +90,7 @@ window.onload = () => {
 
     function fetchEval(filename, model, option) {
         const xhr = new XMLHttpRequest();
-        xhr.timeout = 1000 * 30000;
+        xhr.timeout = 1000 * 3000000;
         xhr.open("GET", encodeURI(`/eval/` + model + '?option=' + option + '&filename=' + filename), true);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = () => {

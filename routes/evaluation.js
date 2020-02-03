@@ -21,20 +21,7 @@ const upload = multer({ storage: storage });
 function move_file_to_right_location(filename, option) {
     
     var final_location = "experiments/images/content/";
-/*
-    if(option === 'maps'){
-        final_location = "datasets/"+ option +"/test/";
-    }
-    else if(option === 'facades'){
-        final_location = "datasets/"+ option +"/test/";
-    }
-    else if(option === 'night2day'){
-        final_location = "datasets/"+ option +"/test/";
-    }
-    else{
-        final_location = "datasets/"+ option +"/testA/";
-    }
- */   
+  
     console.log(final_location);
     const final_command = "mv ./uploaded/" + filename + " " + final_location;
     console.log(final_command);
@@ -68,6 +55,7 @@ router.get('/21styles', (req, res, next) => {
 });
 
 // SWAGGER EDITION = UPLOAD + RUNNING
+const FileMoveError = new Error('file move error');
 router.post('/21styles', upload.array('files', 1), (req, res, next) => {
     const { files } = req;
     const { option } = req.query;
@@ -79,23 +67,48 @@ router.post('/21styles', upload.array('files', 1), (req, res, next) => {
         const filename = files[0].filename;
         console.log({filename, option});
         move_file_to_right_location(filename, option)
+        .catch(() => {
+            throw FileMoveError;
+        })
         .then(() => {
-            exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 256 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
-                if (!error) {
-                    // FIXME: SHOW SUCCESS FILE TO res!
-                    const filename_without_ext = filename.split('.')[0];
-                    const real_file_location = `experiments/output.jpg`;
-                    res.download(real_file_location);
-                } else {
-                    res.status(500);
-                    res.json({"status": "ml test error"});
-                    // FIXME: TEST ERROR!!!!!!
-                }
+            return new Promise((resolve, reject) => {
+                exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 256 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
+                    console.log({error});
+                    console.log({stdout});
+                    console.log({stderr});
+                    if (!error) {
+                        resolve();
+                    } else {
+                        reject(MLTestError);
+                    }
+                });
             });
         })
-        .catch(() => {
+        /*
+        .then(() => {
+            return new Promise((resolve) => {
+                exec("ls -al", {cwd: "experiments/"}, (error, stdout, stderr) => {
+                    console.log({error});
+                    console.log({stdout});
+                    console.log({stderr});
+                    resolve();
+                });
+            });
+        })
+        */
+        .then(() => {
+            const real_file_location = `experiments/output.jpg`;
+            res.download(real_file_location);
+        })
+        .catch((err) => {
             res.status(500);
-            res.json({"status": "file move error"});
+            if (err === FileMoveError) {
+                res.json({"status": "file move error"});
+            } else if (err === MLTestError) {
+                res.json({"status": "ml test error"});
+            } else {
+                res.json({"status": "unknown error"});
+            }
         })
     }
 

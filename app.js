@@ -13,7 +13,8 @@ const evaluationRouter = require('./routes/evaluation');
 const app = express();
 console.log(path.join(__dirname, 'public'))
 app.use(cors({
-    origin: 'https://ainize.ai',
+    //origin: 'https://ainize.ai',
+    origin: 'http://editior.swagger.io'
   }));
 app.use(logger('dev'));
 app.use(express.json());
