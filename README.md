@@ -1,3 +1,61 @@
+
+# Ainized-PyTorch-Multi-Style-Transfer
+
+[![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://ainize.web.app/redirect?git_repo=github.com/parkhojun/ainized-PyTorch-Multi-Style-Transfer.git)
+
+This repository providers a server that image style translation based on a MSG-Net model.
+The model used in the server is from zhanghang1989/PyTorch-Multi-Style-Transfer git which is paper from "Multi-style Generative Network for Real-time Transfers".
+The inference using server is done in the following steps:
+1. User publishes an image files.
+2. server returns a result that translated image. Note that the server is implemented in Node.js.
+
+
+# How to deploy
+
+this server is dockerized, so it can be built and run using docker commands.
+
+# Docker build
+```
+docker build -t mara8534/ainized-pytorch-multi-style-transfer .
+```
+
+# Docker run
+```
+docker run -p 80:80 -it mara8534/ainized-pytorch-multi-style-transfer
+```
+Now the server is available at http://localhost:80.
+
+Note that the docker image can be deployed using any docker-based deploy platform (e.g. ainize.ai).
+
+You can see the demo server from below site
+https://ainize.ai/project/parkhojun/ainized-pytorch-multi-style-transfer/
+
+# How to publish an image file
+
+The image to be evaluated needs to be published first. You can refer to the three following examples of how to publish image files:
+
+1. Select Sever
+3. Select Try it out and Option(Style), File taht you want.
+4. Click Execute and wait, then you see a result than translated image.
+
+
+<img src="./images/img1.png" align="middle" width="400" />
+
+
+
+The result is like this.
+
+
+
+<img src="./images/img2.png" align="middle" width="400" />
+
+# References
+
+1. https://github.com/zhanghang1989/PyTorch-Multi-Style-Transfer
+
+
+---------------------------------------------------------------------------------------------------------------
+
 # PyTorch-Style-Transfer
 
 This repo provides PyTorch Implementation of **[MSG-Net (ours)](#msg-net)** and **[Neural Style (Gatys et al. CVPR 2016)](#neural-style)**, which has been included by [ModelDepot](https://modeldepot.io/zhanghang/multi-style-generative-network-for-real-time-transfer/overview). We also provide [Torch implementation](https://github.com/zhanghang1989/MSG-Net/) and [MXNet implementation](https://github.com/zhanghang1989/MXNet-Gluon-Style-Transfer).
