@@ -1,8 +1,7 @@
 openapi: 3.0.1
 info:
   title: Ainized-PyTorch-Multi-Style-Transfer
-  description: "**This repository providers a server that advances unpaired and paired image-to-image translation based on a GAN model.
-The model used in the server is from junyanz/pytorch-CycleGAN-and-pix2pix/git which is paper from Image-to-Image Translation with Conditional Adversarial Networks.**"
+  description: "**This repository providers a server that image style translation based on a MSG-Net model. The model used in the server is from zhanghang1989/PyTorch-Multi-Style-Transfer git which is paper from Multi-style Generative Network for Real-time Transfers.**"
   contact:
     name: Ainizer - Parkhojun
     email: mara8534@gmail.com
@@ -16,13 +15,13 @@ externalDocs:
 
   
 servers:
-  - url: 'http://34.84.60.112:80'
-  - url: 'https://516360d3.ngrok.io'
+  - url: 'http://516360d3.ngrok.io'
+  - url: 'http://34.85.42.255:80'
   - url: 'https://ainize.ai/project/parkhojun/ainized-pytorch-multi-style-transfer'
 
 tags:
 - name: 21styles
-  description: Use 21Styles model to Image-to-Image Translation
+  description: Use 21Styles model to Image Style Translation
 
 
 
@@ -31,11 +30,11 @@ paths:
     post: 
       tags:
       - 21styles
-      summary: Perform 21Styles to the photos uploaded to the selected model.
+      summary: Perform 21Styles to the photos uploaded to the selected style.
       parameters: 
       - name: option
         in: query
-        description: "**Select the ImageTranslationModel**"
+        description: "**Select the Style Image Translation **"
         required: true
         allowEmptyValue: false
         explode: false
