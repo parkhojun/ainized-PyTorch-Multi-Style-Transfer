@@ -72,7 +72,7 @@ router.post('/21styles', upload.array('files', 1), (req, res, next) => {
         })
         .then(() => {
             return new Promise((resolve, reject) => {
-                exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 256 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
+                exec("python main.py eval --content-image images/content/" + filename + " --style-image images/21styles/" + option + ".jpg --model models/21styles.model --content-size 512 --cuda 0", {cwd: 'experiments/'}, (error, stdout, stderr) => {
                     console.log({error});
                     console.log({stdout});
                     console.log({stderr});
