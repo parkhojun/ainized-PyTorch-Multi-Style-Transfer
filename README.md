@@ -37,12 +37,12 @@ https://ainize.ai/project/parkhojun/ainized-pytorch-multi-style-transfer/
 
 The image to be evaluated needs to be published first. You can refer to the three following examples of how to publish image files:
 
-1. Select Sever and Try it.
-2. Enter the sentences taht you want.
+1. Select Sever
+3. Select Try it out and Option(Style), File taht you want.
 4. Click Execute and wait, then you see a result than translated image.
 
 
-<img src="Data/Test/Ainize1.png" align="middle" width="300" />
+<img src="./images/img1.png" align="middle" width="400" />
 
 
 
@@ -50,12 +50,11 @@ The result is like this.
 
 
 
-<img src="Data/test/Ainize2.png" align="middle" width="300" />
+<img src="./images/img2.png" align="middle" width="400" />
 
 # References
 
-1. https://github.com/bshao001/ChatLearner
-
+1. https://github.com/zhanghang1989/PyTorch-Multi-Style-Transfer
 
 ---------------------------------------------------------------------------------------------------------------
 
