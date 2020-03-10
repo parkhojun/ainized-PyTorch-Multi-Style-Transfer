@@ -1,7 +1,7 @@
 
 # Ainized-PyTorch-Multi-Style-Transfer
 
-https://hojunpark.substack.com/p/no-code-run-on-ainizeengkor
+https://hojunpark.substack.com/p/pytorch-multi-style-transfer-run
 
 
 [![Run on Ainize](https://ainize.ai/static/images/run_on_ainize_button.svg)](https://ainize.web.app/redirect?git_repo=github.com/parkhojun/ainized-PyTorch-Multi-Style-Transfer.git)
